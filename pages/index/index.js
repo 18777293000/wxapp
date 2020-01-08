@@ -10,11 +10,37 @@ Page({
         play: -1,
         time: 0,
         buy: !1,
-        opendate: !1
+        opendate: !1,
+
+        backgrop: ["navbar-item-active"],
+        navbarArray: [],
+        navbarShowIndexArray: 0,
+        navigation: !1,
+        windowWidth: 375,
+        scrollNavbarLeft: 0,
+        currentChannelIndex: 0,
+        ticlesHide: !1
     },
     onLoad: function(t) {
         getApp().page.onLoad(this, t), this.loadData(t), quickNavigation.init(this);
+     
+      var t = this, e = t.type;
+
+      void 0 !== e && e && t.setData({
+        typeid: e
+      }), t.loadTopicList({
+        page: 1,
+        reload: !0
+      }), getApp().core.getSystemInfo({
+        success: function (a) {
+          t.setData({
+            windowWidth: a.windowWidth
+          });
+        }
+      });
     },
+    
+
     suspension: function() {
         var s = this;
         interval = setInterval(function() {
@@ -48,6 +74,7 @@ Page({
             });
         }, 1e4);
     },
+
     loadData: function(t) {
         var a = this, e = getApp().core.getStorageSync(getApp().const.PAGE_INDEX_INDEX);
         e && (e.act_modal_list = [], a.setData(e)), getApp().request({
@@ -62,6 +89,7 @@ Page({
             }
         });
     },
+
     onShow: function() {
         var e = this;
         getApp().page.onShow(this), getApp().getConfig(function(t) {
@@ -73,9 +101,11 @@ Page({
             });
         }), e.notice();
     },
+
     onPullDownRefresh: function() {
         getApp().getStoreData(), clearInterval(timer), this.loadData();
     },
+
     onShareAppMessage: function(t) {
         getApp().page.onShareAppMessage(this);
         return {
@@ -83,6 +113,7 @@ Page({
             title: this.data.store.name
         };
     },
+
     showshop: function(t) {
         var a = this, e = t.currentTarget.dataset.id, i = t.currentTarget.dataset;
         getApp().request({
@@ -100,6 +131,7 @@ Page({
             }
         });
     },
+
     receive: function(t) {
         var e = this, a = t.currentTarget.dataset.index;
         getApp().core.showLoading({
@@ -130,15 +162,18 @@ Page({
             }
         });
     },
+
     closeCouponBox: function(t) {
         this.setData({
             get_coupon_list: ""
         });
     },
+
     notice: function() {
         var t = this.data.notice;
         if (void 0 !== t) t.length;
     },
+
     miaoshaTimer: function() {
         var t = this;
         t.data.miaosha && 0 != t.data.miaosha.rest_time && (t.data.miaosha.ms_next || (timer = setInterval(function() {
@@ -148,32 +183,38 @@ Page({
             })) : clearInterval(timer);
         }, 1e3)));
     },
+
     onHide: function() {
         getApp().page.onHide(this), this.setData({
             play: -1
         }), clearInterval(interval);
     },
+
     onUnload: function() {
         getApp().page.onUnload(this), this.setData({
             play: -1
         }), clearInterval(timer), clearInterval(interval);
     },
+
     showNotice: function() {
         this.setData({
             show_notice: !0
         });
     },
+
     closeNotice: function() {
         this.setData({
             show_notice: !1
         });
     },
+
     to_dial: function() {
         var t = this.data.store.contact_tel;
         getApp().core.makePhoneCall({
             phoneNumber: t
         });
     },
+
     closeActModal: function() {
         var t, a = this, e = a.data.act_modal_list, i = !0;
         for (var o in e) {
@@ -188,14 +229,17 @@ Page({
             act_modal_list: e
         });
     },
+
     naveClick: function(t) {
         getApp().navigatorClick(t, this);
     },
+
     play: function(t) {
         this.setData({
             play: t.currentTarget.dataset.index
         });
     },
+
     onPageScroll: function(t) {
         var a = this;
         if (!fullScreen && -1 != a.data.play) {
@@ -213,7 +257,123 @@ Page({
             });
         }
     },
+
     fullscreenchange: function(t) {
         fullScreen = !!t.detail.fullScreen;
+    },
+
+  onTapNavbar: function (i) {
+    var r = this;
+    if ("undefined" == typeof my) {
+      var a = i.currentTarget.offsetLeft;
+      r.setData({
+        scrollNavbarLeft: a - 85
+      });
+    } else {
+      var n = r.data.navbarArray, o = !0;
+      n.forEach(function (a, t, e) {
+        i.currentTarget.id == a.id && (o = !1, 1 <= t ? r.setData({
+          toView: n[t - 1].id
+        }) : r.setData({
+          toView: -1
+        }));
+      }), o && r.setData({
+        toView: "0"
+      });
     }
+    getApp().core.showLoading({
+      title: "正在加载",
+      mask: !0
+    }), r.switchChannel(parseInt(i.currentTarget.id)), r.sortTopic({
+      page: 1,
+      type: i.currentTarget.id,
+      reload: !0
+    });
+  },
+
+  switchChannel: function (i) {
+    var a = this.data.navbarArray, t = new Array();
+    -1 == i ? t[1] = "navbar-item-active" : 0 == i && (t[0] = "navbar-item-active"),
+      a.forEach(function (a, t, e) {
+        a.type = "", a.id == i && (a.type = "navbar-item-active");
+      }), this.setData({
+        navbarArray: a,
+        currentChannelIndex: i,
+        backgrop: t
+      });
+  },
+
+  sortTopic: function (t) {
+    var e = this;
+    getApp().request({
+      url: getApp().api.default.topic_list,
+      data: t,
+      success: function (a) {
+        0 == a.code && (t.reload && e.setData({
+          list: a.data.list,
+          page: t.page,
+          is_more: 0 < a.data.list.length
+        }), t.loadmore && e.setData({
+          list: e.data.list.concat(a.data.list),
+          page: t.page,
+          is_more: 0 < a.data.list.length
+        }), getApp().core.hideLoading());
+      }
+    });
+  },
+
+  loadTopicList: function (i) {
+    var r = this;
+    //console.log(r);
+    r.data.is_loading || i.loadmore && !r.data.is_more || (r.setData({
+      is_loading: !0
+    }), getApp().request({
+      url: getApp().api.default.topic_type,
+      success: function (a) {
+        //console.log(a);
+        0 == a.code && r.setData({
+          navbarArray: a.data.list,
+          navbarShowIndexArray: Array.from(Array(a.data.list.length).keys()),
+          navigation: "" != a.data.list
+        }), getApp().request({
+          url: getApp().api.default.topic_list,
+          data: {
+            page: i.page
+          },
+          success: function (a) {
+            //console.log(a);
+            if (0 == a.code) if (void 0 !== r.data.typeid) {
+              for (var t = 0, e = 0; e < r.data.navbarArray.length && (t += 66, r.data.navbarArray[e].id != r.data.typeid); e++);
+              r.setData({
+                scrollNavbarLeft: t
+              }), r.switchChannel(parseInt(r.data.typeid)), r.sortTopic({
+                page: 1,
+                type: r.data.typeid,
+                reload: !0
+              });
+            } else i.reload && r.setData({
+              list: a.data.list,
+              page: i.page,
+              is_more: 0 < a.data.list.length
+            }), i.loadmore && r.setData({
+              list: r.data.list.concat(a.data.list),
+              page: i.page,
+              is_more: 0 < a.data.list.length
+            });
+          },
+          complete: function () {
+            r.setData({
+              is_loading: !1
+            });
+          }
+        });
+      }
+    }));
+  },
+  
+  
+  
+
+  
+  
 });

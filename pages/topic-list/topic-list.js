@@ -10,8 +10,10 @@ Page({
         articlesHide: !1
     },
     onLoad: function(a) {
+      //console.log(a);
         getApp().page.onLoad(this, a);
         var t = this, e = a.type;
+        
         void 0 !== e && e && t.setData({
             typeid: e
         }), t.loadTopicList({
@@ -27,11 +29,13 @@ Page({
     },
     loadTopicList: function(i) {
         var r = this;
+        console.log(r);
         r.data.is_loading || i.loadmore && !r.data.is_more || (r.setData({
             is_loading: !0
         }), getApp().request({
             url: getApp().api.default.topic_type,
             success: function(a) {
+                 console.log(a);
                 0 == a.code && r.setData({
                     navbarArray: a.data.list,
                     navbarShowIndexArray: Array.from(Array(a.data.list.length).keys()),
@@ -42,6 +46,7 @@ Page({
                         page: i.page
                     },
                     success: function(a) {
+                      console.log(a);
                         if (0 == a.code) if (void 0 !== r.data.typeid) {
                             for (var t = 0, e = 0; e < r.data.navbarArray.length && (t += 66, r.data.navbarArray[e].id != r.data.typeid); e++) ;
                             r.setData({
@@ -72,6 +77,7 @@ Page({
     },
     onShow: function() {
         getApp().page.onShow(this);
+        //console.log(this);
     },
     onPullDownRefresh: function() {
         getApp().page.onPullDownRefresh(this);

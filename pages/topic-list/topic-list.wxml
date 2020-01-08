@@ -16,7 +16,10 @@
                     </view>
                 </view>
             </scroll-view>
+
             <view class="hideview" wx:if="{{navigation}}"></view>
+            
+
             <scroll-view class="articles" hidden="{{articlesHide}}">
                 <view class="after-navber">
                     <view class="list">
@@ -51,6 +54,7 @@
                     </view>
                 </view>
             </scroll-view>
+
         </view>
     </view>
     <include src="/components/footer/footer"></include>
