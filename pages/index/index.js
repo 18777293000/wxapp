@@ -238,6 +238,7 @@ Page({
         this.setData({
             play: t.currentTarget.dataset.index
         });
+        console.log(t);
     },
 
     onPageScroll: function(t) {

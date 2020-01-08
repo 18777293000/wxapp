@@ -58,6 +58,7 @@ Page({
             show_video: a,
             show: !0
         });
+        console.log(this);
     },
     onReachBottom: function() {
         is_no_more || this.loadMoreGoodsList();

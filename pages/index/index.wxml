@@ -15,7 +15,7 @@
             <template is="miaosha" data="{{__wxapp_img:__wxapp_img,miaosha:miaosha,item:item}}" wx:elif="{{item.name=='miaosha'}}"></template>
             <template is="pintuan" data="{{__wxapp_img:__wxapp_img,pintuan:pintuan,item:item}}" wx:elif="{{item.name=='pintuan'}}"></template>
             <template is="yuyue" data="{{__wxapp_img:__wxapp_img,yuyue:yuyue,item:item}}" wx:elif="{{item.name=='yuyue'}}"></template>
-            <template is="video" data="{{__wxapp_img:__wxapp_img,update_list:update_list,video_item:item,play:play}}" wx:elif="{{item.name=='video'}}"></template>
+            <template is="video" data="{{__wxapp_img:__wxapp_img,update_list:update_list,video_item:item,play:play}}" wx:elif="{{item.name=='video'}}" ></template>
             <template is="mch" data="{{__wxapp_img:__wxapp_img,mch_list:mch_list,item:item}}" wx:elif="{{item.name=='mch'&&mch_list&&mch_list.length>0}}"></template>
             <block wx:else>
                 <template is="{{'block-'+block.data.pic_list.length+'-'+block.style}}" data="{{__wxapp_img:__wxapp_img,block:block,item:item,store:store}}" wx:if="{{item.block_id==block.id}}" wx:for="{{block_list}}" wx:for-item="block" wx:key="block.id"></template>
