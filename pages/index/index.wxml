@@ -35,7 +35,7 @@
                     <view catchtap="onTapNavbar" class="navbar-item" id="{{navbarArray[item].id}}" wx:for="{{navbarShowIndexArray}}" wx:key="{{item.id}}">
                         <view class="navbar-item-wrap {{navbarArray[item].type}}">{{navbarArray[item].name}}</view>
                     </view>
-                    <view  class="navbar-item-more" hidden="{{!navigation}}" id="-2">
+                    <view catchtap="onTapNavBarMore" class="navbar-item-more" hidden="{{!navigation}}" id="-2">
                         <view class="navbar-item-wrap {{backgrop[2]}}">更多</view>
                     </view>
                 </view>

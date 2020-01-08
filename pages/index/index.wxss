@@ -89,8 +89,8 @@
     height: 86rpx;
 }
 .navbar-item-more {
-    position: fixed;
-    right: 0px;
+    position: relative;
+    left: 40px;
     display: inline-block;
     margin: auto 32rpx;
     height: 86rpx;

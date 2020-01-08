@@ -291,6 +291,12 @@ Page({
     });
   },
 
+  onTapNavBarMore:function(i){
+   wx.redirectTo({
+     url: '../topic-list/topic-list',
+   })
+  },
+
   switchChannel: function (i) {
     var a = this.data.navbarArray, t = new Array();
     -1 == i ? t[1] = "navbar-item-active" : 0 == i && (t[0] = "navbar-item-active"),
