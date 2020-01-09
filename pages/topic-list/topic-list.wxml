@@ -31,6 +31,7 @@
                                             <view class="title">{{item.title}}</view>
                                         </view>
                                         <view class="flex-grow-0 read-count fs-sm">{{item.read_count}}</view>
+                                        <view class="flex-grow-0 read-count fs-sm">发布时间{{timeString}}</view>
                                     </view>
                                     <view class="flex-grow-0" style="position: relative">
                                         <image class="cover-pic" mode="aspectFill" src="{{item.cover_pic}}"></image>

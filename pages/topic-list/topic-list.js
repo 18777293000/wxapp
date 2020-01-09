@@ -7,13 +7,12 @@ Page({
         windowWidth: 375,
         scrollNavbarLeft: 0,
         currentChannelIndex: 0,
-        articlesHide: !1
+        articlesHide: !1,
+        timeString:""
     },
     onLoad: function(a) {
-      //console.log(a);
         getApp().page.onLoad(this, a);
         var t = this, e = a.type;
-        
         void 0 !== e && e && t.setData({
             typeid: e
         }), t.loadTopicList({
@@ -26,6 +25,24 @@ Page({
                 });
             }
         });
+        // var timeString = new Date(this.data.list[].addtime).toLocaleString()
+        
+        setTimeout(() => {
+            var time = this.data.list[0].addtime;
+            var dateTime = new Date(parseInt(time) * 1000)
+            var year = dateTime.getFullYear();
+            var month = dateTime.getMonth() + 1;
+            var day = dateTime.getDate();
+            var hour = dateTime.getHours();
+            var minute = dateTime.getMinutes();
+            var timeSpanStr = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+            console.log(1,timeSpanStr);
+            this.setData({
+                timeString: timeSpanStr
+                })
+        }, 1000);
+        
+      
     },
     loadTopicList: function(i) {
         var r = this;
@@ -153,5 +170,6 @@ Page({
             currentChannelIndex: i,
             backgrop: t
         });
-    }
+    },
+
 });
