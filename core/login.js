@@ -5,6 +5,7 @@ module.exports = function(e) {
         url: this.api.share.index,
         success: function(e) {
             0 == e.code && (t.page.setPhone(), t.trigger.run(t.trigger.events.login));
+            
         }
     });
 };

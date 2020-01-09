@@ -50,7 +50,6 @@ Page({
         var hour = dateTime.getHours();
         var minute = dateTime.getMinutes();
         var timeSpanStr = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
-        console.log(1,t);
         t.setData({
             timeString: timeSpanStr
             })

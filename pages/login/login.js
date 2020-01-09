@@ -2,6 +2,8 @@ Page({
     data: {},
     onLoad: function(e) {
         getApp().page.onLoad(this, e);
+        console.log(e);
+        console.log(this);
     },
     getUserInfo: function(o) {
         var n = this;

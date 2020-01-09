@@ -6,8 +6,8 @@ page {
     border: none;
     height: 88rpx;
     line-height: 88rpx;
-    background: #04be01;
-    color: #fff;
+    background: #be3301;
+    color: rgb(59, 10, 206);
     font-size: 11pt;
     border-radius: 999rpx;
 }
