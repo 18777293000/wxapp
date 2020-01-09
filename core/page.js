@@ -76,6 +76,7 @@ module.exports = {
     e.detail.formId;
     console.log("formSubmit_collect--\x3e", e);
   },
+  
   setUserInfo: function() {
     var e = this.currentPage,
       t = getApp().getUser();
@@ -83,6 +84,7 @@ module.exports = {
       __user_info: t
     });
   },
+  
   setWxappImg: function(e) {
     var t = this.currentPage;
     getApp().getConfig(function(e) {
@@ -125,6 +127,7 @@ module.exports = {
         }));
     }
   },
+
   showToast: function(e) {
     var t = this.currentPage,
       o = e.duration || 2500,
@@ -142,6 +145,7 @@ module.exports = {
       }), "function" == typeof n && n();
     }, o);
   },
+
   setDeviceInfo: function() {
     var e = this.currentPage,
       t = [{

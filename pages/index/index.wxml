@@ -1,6 +1,9 @@
 <import src="/components/common/index"></import>
+
 <view class="page {{__page_classes}}">
-    <include src="/components/common/common"></include>
+    <!-- <include src="/components/common/common"></include> -->
+    <include src="/components/get-coupon/get-coupon"></include>
+    <include src="/components/common/navbar"></include>
     <include src="/components/header/header"></include>
     <view class="body after-navber">
         <template is="buy-data" data="{{buy:buy}}"></template>

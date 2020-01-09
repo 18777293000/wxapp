@@ -1,5 +1,7 @@
 <view class="page">
-    <include src="/components/common/common"></include>
+    <!-- <include src="/components/common/common"></include> -->
+    <include src="/components/get-coupon/get-coupon"></include>
+    <include src="/components/common/navbar"></include>
     <include src="/components/header/header"></include>
     <view class="body after-navber">
         <view class="flex-y-center flex-x-center" style="height: 100rpx;border-bottom: 1rpx solid #e3e3e3;border-top: 1rpx solid #e3e3e3;position: fixed;top: 0;width: 100%;z-index: 999;background: #EFEFF4">
