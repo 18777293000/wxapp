@@ -1,6 +1,7 @@
 <view id="_toast" wx:if="{{_toast}}">
     <view class="{{_toast.hide?'hide':''}}" id="_toast_title">
         <text>{{_toast.title}}</text>
+        
     </view>
 </view>
 <view class=" flex-row flex-x-center flex-y-center" id="_loading" wx:if="{{_loading}}">
@@ -17,12 +18,15 @@
                 <image src="{{__wxapp_img.system.alipay.url}}" style="width: 88rpx;height: 88rpx;" wx:else></image>
             </view>
             <view style="padding:0 41rpx;">
-                <view style="padding-bottom:10rpx;margin-bottom:10rpx;">申请获取以下权限</view>
+                <view style="padding-bottom:10rpx;margin-bottom:10rpx;">申请获取以下权限1</view>
                 <view class="dian" style="color: #888;margin-bottom: 40rpx">获得你的公开信息（昵称、头像等）</view>
             </view>
             <view class="flex-x-center">
                 <view>
-                    <button bindgetuserinfo="getUserInfo" bindtap="myLogin" class="btn new-modal-btn" openType="getUserInfo" style="background-color:#04be01;width:500rpx;height:80rpx;border-radius:80rpx;color:#fff;margin-bottom:40rpx;">确认</button>
+                    <button bindgetuserinfo="getUserInfo" bindtap="myLogin" class="btn new-modal-btn" openType="getUserInfo" style="background-color:#04be01;width:200rpx;height:80rpx;border-radius:80rpx;color:#fff;margin-bottom:40rpx;margin-right:20rpx;">确认</button>
+                </view>
+                <view>
+                    <navigator  url="javascript" class="btn new-modal-btn"  style="background-color:#04be01;width:200rpx;height:80rpx;border-radius:80rpx;color:#fff;margin-bottom:40rpx;margin-left:20rpx;">取消</navigator>
                 </view>
             </view>
         </view>

@@ -51,7 +51,7 @@ var modules = [ {
     onShow: function(e) {
         e.scene && (this.onShowData = e), e && e.query && (this.query = e.query);
     },
-    is_login: !1
+    is_login: 1
 };
 
 for (var i in modules) args[modules[i].name] = require("" + modules[i].file);

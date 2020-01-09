@@ -5,9 +5,10 @@ page {
 .login-btn {
     border: none;
     height: 88rpx;
+    width: 300rpx;
     line-height: 88rpx;
-    background: #be3301;
-    color: rgb(59, 10, 206);
+    background: #04be01;
+    color: rgb(255, 255, 255);
     font-size: 11pt;
     border-radius: 999rpx;
 }
