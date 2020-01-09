@@ -19,7 +19,9 @@ Page({
         windowWidth: 375,
         scrollNavbarLeft: 0,
         currentChannelIndex: 0,
-        ticlesHide: !1
+        ticlesHide: !1,
+
+        timeString:""
     },
     onLoad: function(t) {
         getApp().page.onLoad(this, t), this.loadData(t), quickNavigation.init(this);
@@ -38,6 +40,21 @@ Page({
           });
         }
       });
+
+      setTimeout(() => {
+        var time = t.data.list[0].addtime;
+        var dateTime = new Date(parseInt(time) * 1000)
+        var year = dateTime.getFullYear();
+        var month = dateTime.getMonth() + 1;
+        var day = dateTime.getDate();
+        var hour = dateTime.getHours();
+        var minute = dateTime.getMinutes();
+        var timeSpanStr = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+        console.log(1,t);
+        t.setData({
+            timeString: timeSpanStr
+            })
+    }, 1000);
     },
     
 
