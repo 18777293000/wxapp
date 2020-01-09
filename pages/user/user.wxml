@@ -7,6 +7,31 @@
         <view class="page {{__page_classes}}">
             <view class="body after-navber">
                 <view style="position:relative;">
+                    <!-- 无用户信息时的面板 -->
+                     <view class="user-info flex-row flex-y-center" wx:if="{{show_customer_service==0}}">
+                        <image class="user-info-bg" mode="aspectFill" src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/img-user-bg.png"></image>
+                        <view class="flex-grow-1 flex-y-center flex-row userinfo-name">
+                            <view class="flex-grow-0">
+                                <image class="avatar" src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/img-user-bg.png"></image>
+                            </view>
+                            <view class="flex-grow-1">
+                                <text class="user-name">登陆</text>
+                                <view bindtap="{{next_level||user_info&&user_info.level!=-1?'member':''}}" class="user-level flex-row">
+                                    <view class="level-name flex-y-bottom">
+                                        <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/wxapp/images/icon-user-level.png"></image>
+                                        <view class="flex-y-center" style="height:100%;">用户</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="flex-grow-0 flex-y-center userinfo-addr">
+                            <navigator class="my-address flex-y-center" url="/pages/address/address">
+                                <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/wxapp/images/icon-address.png"></image>
+                                <text>收货地址</text>
+                            </navigator>
+                        </view>
+                    </view>
+                   <!-- 无用户信息的面板 -->
                     <view class="user-info flex-row flex-y-center" wx:if="{{style.top==0}}">
                         <image class="user-info-bg" mode="aspectFill" src="{{user_center_bg}}"></image>
                         <view class="flex-grow-1 flex-y-center flex-row userinfo-name">
@@ -80,7 +105,126 @@
                         </view>
                     </view>
                 </view>
-                <view class="wallet flex-row" wx:if="{{wallet&&wallet.is_wallet==1}}">
+                <!-- 无用户信息时的wallet -->
+                <view class="order-block" wx:if="{{show_customer_service==0}}">
+                    <navigator class="my-order" url="/pages/order/order?status=-1">我的订单</navigator>
+                    <view class="flex-row">
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/order/order?status=0">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-order-0.png"></image>
+                                </view>
+                                <view>待付款</view>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/order/order?status=1">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-order-1.png"></image>
+                                </view>
+                                <view>待发货</view>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/order/order?status=2">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-order-2.png"></image>
+                                </view>
+                                <view>待收货</view>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/order/order?status=3">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-order-3.png"></image>
+                                </view>
+                                <view>已完成</view>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/order/order?status=4">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-order-4.png"></image>
+                                </view>
+                                <view>售后</view>
+                            </navigator>
+                        </view>
+                    </view>
+                </view>
+                <!-- 无用户信息时的wallet -->
+                <!-- 无用户信息时的option-list -->
+                <view class="order-block" wx:if="{{show_customer_service==0}}">
+                    <view class="flex-row">
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/favorite/favorite">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-user-sc.png"></image>
+                                </view>
+                                <view>我的收藏</view>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="javascript">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-user-kf.png"></image>
+                                </view>
+                                <view>在线客服</view>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="javascript">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-user-lx.png"></image>
+                                </view>
+                                <view>联系我们</view>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/article-detail/article-detail?id=about_us">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-about-us.png"></image>
+                                </view>
+                                <view>关于我们</view>
+                            </navigator>
+                        </view>
+                    </view>
+                    <view class="flex-row">
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/address/address">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-user-dz.png"></image>
+                                </view>
+                                <view>收货地址</view>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/bangding/bangding">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-user-bangding.png"></image>
+                                </view>
+                                <view>绑定手机号</view>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/book/order/order">
+                                <view>
+                                    <image src="/images/icon-user-card.png"></image>
+                                </view>
+                                <view>我的预约</view>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/book/order/order">
+                                <view>
+                                    <image src="/images/icon-user-card.png"></image>
+                                </view>
+                                <view>我的卡券</view>
+                            </navigator>
+                        </view>
+                    </view>
+                </view>
+                <!-- 无用户信息时的option-list -->
+                <view class="wallet flex-row"wx:if="{{wallet&&wallet.is_wallet==1}}">
                     <view class="flex-grow-0 wallet-1 flex-x-center flex-y-center" style="{{wallet.re==1?'width:150rpx;':''}}">
                         <view>
                             <view class="flex-x-center">
@@ -99,6 +243,7 @@
                         </view>
                     </view>
                     <view class="flex-grow-0 {{wallet.re==1?'wallet-3':'wallet-2'}}  flex-x-center flex-y-center" wx:if="{{wallet.re==1}}">
+                    <!--  -->
                         <view class="flex-grow-1 flex-y-center flex-col">
                             <navigator hoverClass="none" url="/pages/balance/balance">
                                 <view class="num-1 flex-x-center">{{user_info.money}}</view>
@@ -120,6 +265,7 @@
                                 </view>
                                 <view>{{orders.status_0.text?orders.status_0.text:'待付款'}}</view>
                                 <view class="num-icon" wx:if="{{order_count.status_0&&order_count.status_0>0}}">
+                                <!--  -->
                                     <text>{{order_count.status_0}}</text>
                                 </view>
                             </navigator>
@@ -131,6 +277,7 @@
                                 </view>
                                 <view>{{orders.status_1.text?orders.status_1.text:'待发货'}}</view>
                                 <view class="num-icon" wx:if="{{order_count.status_1&&order_count.status_1>0}}">
+                                <!--  -->
                                     <text>{{order_count.status_1}}</text>
                                 </view>
                             </navigator>
@@ -142,6 +289,7 @@
                                 </view>
                                 <view>{{orders.status_2.text?orders.status_2.text:'待收货'}}</view>
                                 <view class="num-icon" wx:if="{{order_count.status_2&&order_count.status_2>0}}">
+                                <!--  -->
                                     <text>{{order_count.status_2}}</text>
                                 </view>
                             </navigator>

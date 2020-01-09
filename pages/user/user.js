@@ -5,6 +5,7 @@ Page({
     },
     onLoad: function(e) {
         getApp().page.onLoad(this, e);
+        console.log(1,this);
     },
     loadData: function(e) {
         var t = this;
