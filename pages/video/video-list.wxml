@@ -13,8 +13,12 @@
                                 <image bindtap="play" class="play" data-index="{{index}}" src="{{__wxapp_img.store.video_play.url}}"></image>
                             </block>
                         </view>
-                        <view class="info-label">{{item.title}}</view>
-                        <view class="content {{item.show!=-1?'':'more'}}">{{item.content}}</view>
+                        <view class="info-label">
+                          {{item.title}}
+                        </view>
+                        <view class="content {{item.show!=-1?'':'more'}}">
+                          {{item.content}}
+                        </view>
                         <view class="flex-y-center flex-x-center" style="position:relative;height:80rpx;font-size:9pt;color:#afafaf">
                             <text class="flex-y-center left">{{item.time}}</text>
                             <view bindtap="more" class="right flex-y-center" data-index="{{index}}">

@@ -16,6 +16,7 @@ Page({
     onReady: function() {},
     onShow: function() {
         app.page.onShow(this);
+        console.log(1,this);
     },
     onHide: function() {
         app.page.onHide(this);

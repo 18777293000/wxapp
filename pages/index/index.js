@@ -40,7 +40,7 @@ Page({
           });
         }
       });
-
+      
       setTimeout(() => {
         var time = t.data.list[0].addtime;
         var dateTime = new Date(parseInt(time) * 1000)
@@ -116,6 +116,7 @@ Page({
                 buy_user: ""
             });
         }), e.notice();
+        console.log(1,this);
     },
 
     onPullDownRefresh: function() {
