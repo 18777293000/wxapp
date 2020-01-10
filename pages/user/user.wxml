@@ -223,6 +223,12 @@
                         </view>
                     </view>
                 </view>
+                <view  style="text-align:center;font-size:0;" wx:if="{{show_customer_service==0}}">
+                  <navigator style="color: rgba(0,0,0,.3);font-size:9pt;display:inline-block;text-align:center;">
+                    <text>哇咔科技提供技术支持</text>
+                  </navigator>
+                </view>
+                
                 <!-- 无用户信息时的option-list -->
                 <view class="wallet flex-row"wx:if="{{wallet&&wallet.is_wallet==1}}">
                     <view class="flex-grow-0 wallet-1 flex-x-center flex-y-center" style="{{wallet.re==1?'width:150rpx;':''}}">

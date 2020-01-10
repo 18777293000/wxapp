@@ -1,6 +1,8 @@
 <import src="../../wxParse/wxParse.wxml"></import>
 <view class="page">
-    <include src="/components/common/common"></include>
+    <!-- <include src="/components/common/common"></include> -->
+    <include src="/components/get-coupon/get-coupon"></include>
+    <include src="/components/common/navbar"></include>
     <include src="/components/header/header"></include>
     <include src="/components/quick-navigation/quick-navigation.wxml"></include>
     <view class="body">
