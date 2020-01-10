@@ -104,4 +104,10 @@ Page({
             show_login_button:false
         });
       },
+      noGotUserInfo: function (e) {
+        var t = this;
+        t.setData({
+            show_login_button:true
+        });
+      },
 });
