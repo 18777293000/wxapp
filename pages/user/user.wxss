@@ -28,6 +28,10 @@
 .user-info .user-name {
     font-weight: bold;
 }
+.user-clickup {
+  background-color: #ff4544;
+  color: #fff;
+}
 
 .user-info .my-address {
     background: #ff4544;

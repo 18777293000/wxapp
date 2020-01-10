@@ -1,11 +1,11 @@
 Page({
     data: {
         contact_tel: "",
-        show_customer_service: 0
+        show_customer_service: 0,
+        show_login_button: true
     },
     onLoad: function(e) {
         getApp().page.onLoad(this, e);
-        console.log(1,this);
     },
     loadData: function(e) {
         var t = this;
@@ -97,5 +97,11 @@ Page({
         a = "integralmall", -1 != ("," + t.join(",") + ",").indexOf("," + a + ",")) && getApp().core.navigateTo({
             url: "/pages/integral-mall/index/index"
         });
-    }
+    },
+    onGotUserInfo: function (e) {
+        var t = this;
+        t.setData({
+            show_login_button:false
+        });
+      },
 });
