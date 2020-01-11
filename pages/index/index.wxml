@@ -25,7 +25,7 @@
             </block>
         </block>
 
-         <view class="container">
+         <view class="container" >
             <scroll-view class="nnavbar fs-sm-13" scrollIntoView="{{toView}}" scrollLeft="{{scrollNavbarLeft}}" scrollWithAnimation="true" scrollX="true" wx:if="{{navigation}}">
                 <view class="view1">
                     <view catchtap="onTapNavbar" class="navbar-item " hidden="{{!navigation}}" id="0">
@@ -50,7 +50,7 @@
             <scroll-view class="articles" hidden="{{articlesHide}}">
                 <view class="after-navber">
                     <view class="list">
-                        <block wx:for="{{list}}" wx:key="{{item.id}}">
+                        <block wx:for="{{list}}" wx:for-index="0" wx:key="{{item.id}}">
                             <navigator class="item layout-0" url="/pages/topic/topic?id={{item.id}}" wx:if="{{item.layout==0}}">
                                 <view class="flex-row">
                                     <view class="flex-grow-1 flex-col">
@@ -58,7 +58,7 @@
                                             <view class="title">{{item.title}}</view>
                                         </view>
                                         <view class="flex-grow-0 read-count fs-sm">{{item.read_count}}</view>
-                                        <view class="flex-grow-0 read-count fs-sm">发布时间{{timeString}}</view>
+                                        <view class="flex-grow-0 read-count fs-sm">发布时间{{arttime[item.id-5]}}</view>
                                     </view>
                                     <view class="flex-grow-0" style="position: relative">
                                         <image class="cover-pic" mode="aspectFill" src="{{item.cover_pic}}"></image>
@@ -75,6 +75,7 @@
                                 </view>
                             </navigator>
                         </block>
+                        
                     </view>
                     <view class="no-content" wx:if="{{!is_loading&&(!list||list.length==0)}}">暂无内容</view>
                     <view hidden="ture" class="loading-more {{is_loading?'active':''}}">
@@ -102,7 +103,7 @@
                         <text class="flex-y-center left">{{item.time}}</text>
                         <view bindtap="more" class="right flex-y-center" data-index="{{index}}">
                                 <image animation="{{animationData}}" src="{{item.show!=-1?__wxapp_img.store.up.url:'/images/icon-down.png'}}"></image>
-                                <text data-index="{{index}}">展开</text>
+                                <text data-index="{{index}}">更多</text>
                             </view>
                         </view>
                     </view>

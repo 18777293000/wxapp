@@ -22,7 +22,7 @@ Page({
         currentChannelIndex: 0,
         ticlesHide: !1,
 
-        timeString:"",
+        arttime:[],
 
         page: 1,
         video_list: [],
@@ -48,21 +48,6 @@ Page({
           });
         }
       });
-      
-      setTimeout(() => {
-        var time = t.data.list[0].addtime;
-        var dateTime = new Date(parseInt(time) * 1000)
-        var year = dateTime.getFullYear();
-        var month = dateTime.getMonth() + 1;
-        var day = dateTime.getDate();
-        var hour = dateTime.getHours();
-        var minute = dateTime.getMinutes();
-        var timeSpanStr = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
-        t.setData({
-            timeString: timeSpanStr
-            })
-            console.log(1,this);
-    }, 1000);
 
     this.loadMoreGoodsList(), is_no_more = is_loading_more = !1;
     },
@@ -127,7 +112,24 @@ Page({
                 buy_user: ""
             });
         }), e.notice();
-        console.log(1,this);
+        
+        setTimeout(() => {
+          var a = e.data.list.length;
+          for(var i=0;i<a;i++){
+              var b=e.data.list[i].addtime;
+              var dateTime = new Date(parseInt(b) * 1000)
+              var year = dateTime.getFullYear();
+              var month = dateTime.getMonth() + 1;
+              var day = dateTime.getDate();
+              var hour = dateTime.getHours();
+              var minute = dateTime.getMinutes();
+              var timeSpanStr = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+              e.setData({
+                  arttime: e.data.arttime.concat(timeSpanStr)
+              });
+          }
+          console.log(1,this);
+      }, 1000);
     },
 
     onPullDownRefresh: function() {
@@ -438,6 +440,11 @@ Page({
     }
   },
   
+  more:function(){
+    wx.redirectTo({
+      url: '../video/video-list',
+    })
+  }
   
 
   
