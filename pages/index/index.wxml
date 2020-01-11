@@ -50,7 +50,7 @@
             <scroll-view class="articles" hidden="{{articlesHide}}">
                 <view class="after-navber">
                     <view class="list">
-                        <block wx:for="{{list}}" wx:for-index="0" wx:key="{{item.id}}">
+                        <block wx:for="{{list}}" wx:key  wx:if="{{index<2}}">
                             <navigator class="item layout-0" url="/pages/topic/topic?id={{item.id}}" wx:if="{{item.layout==0}}">
                                 <view class="flex-row">
                                     <view class="flex-grow-1 flex-col">
@@ -58,7 +58,7 @@
                                             <view class="title">{{item.title}}</view>
                                         </view>
                                         <view class="flex-grow-0 read-count fs-sm">{{item.read_count}}</view>
-                                        <view class="flex-grow-0 read-count fs-sm">发布时间{{arttime[item.id-5]}}</view>
+                                        <view class="flex-grow-0 read-count fs-sm">发布时间{{arttime[index]}}</view>
                                     </view>
                                     <view class="flex-grow-0" style="position: relative">
                                         <image class="cover-pic" mode="aspectFill" src="{{item.cover_pic}}"></image>
@@ -88,7 +88,7 @@
          
          <view class="info">
             <view class="info-list">
-                <view class="info-content" wx:for="{{video_list}}" wx:key="{{item.id}}">
+                <view class="info-content" wx:for="{{video_list}}" wx:key  wx:if="{{index<2}}">
                     <view class="info-bg">
                         <view class="info-video">
                             <video autoplay="true" controls="controls" id="video_{{index}}" src="{{item.url}}" wx:if="{{show_video==index}}"></video>
