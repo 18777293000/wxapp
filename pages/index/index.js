@@ -1,4 +1,5 @@
 var quickNavigation = require("./../../components/quick-navigation/quick-navigation.js"), interval = 0, page_first_init = !0, timer = 1, fullScreen = !1;
+var is_loading_more = !1, is_no_more = !1;
 
 Page({
     data: {
@@ -21,7 +22,14 @@ Page({
         currentChannelIndex: 0,
         ticlesHide: !1,
 
-        timeString:""
+        timeString:"",
+
+        page: 1,
+        video_list: [],
+        url: "",
+        hide: "hide",
+        show: !1,
+        animationData: {}
     },
     onLoad: function(t) {
         getApp().page.onLoad(this, t), this.loadData(t), quickNavigation.init(this);
@@ -53,7 +61,10 @@ Page({
         t.setData({
             timeString: timeSpanStr
             })
+            console.log(1,this);
     }, 1000);
+
+    this.loadMoreGoodsList(), is_no_more = is_loading_more = !1;
     },
     
 
@@ -251,12 +262,14 @@ Page({
         getApp().navigatorClick(t, this);
     },
 
-    play: function(t) {
-        this.setData({
-            play: t.currentTarget.dataset.index
-        });
-        console.log(2,t);
-        console.log(2,this);
+    play: function(o) {
+      var a = o.currentTarget.dataset.index;
+      getApp().core.createVideoContext("video_" + this.data.show_video).pause(), this.setData({
+          show_video: a,
+          show: !0
+      });
+      console.log(1,this);
+    
     },
 
     onPageScroll: function(t) {
@@ -396,6 +409,34 @@ Page({
     }));
   },
   
+  loadMoreGoodsList: function() {
+    var t = this;
+    if (!is_loading_more) {
+        t.setData({
+            show_loading_bar: !0
+        }), is_loading_more = !0;
+        var i = t.data.page;
+        getApp().request({
+            url: getApp().api.default.video_list,
+            data: {
+                page: i
+            },
+            success: function(o) {
+                0 == o.data.list.length && (is_no_more = !0);
+                var a = t.data.video_list.concat(o.data.list);
+                t.setData({
+                    video_list: a,
+                    page: i + 1
+                });
+            },
+            complete: function() {
+                is_loading_more = !1, t.setData({
+                    show_loading_bar: !1
+                });
+            }
+        });
+    }
+  },
   
   
 
