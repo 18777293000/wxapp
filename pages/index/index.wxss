@@ -101,13 +101,12 @@
     height: 86rpx;
 }
 .nnavbar-more {
-    position:absolute;
-    top:226px;
+    
     z-index: 4;
     height: 90rpx;
     width: 64px;
     padding-left:10px;
-    margin-left:80%;
+    /* margin-left:80%; */
     white-space: nowrap;
     background-color: #ffffff;
     border-bottom: 1px solid #e2e2e2;

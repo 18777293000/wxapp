@@ -26,8 +26,10 @@
         </block>
 
          <view class="container" >
-            <scroll-view class="nnavbar fs-sm-13" scrollIntoView="{{toView}}" scrollLeft="{{scrollNavbarLeft}}" scrollWithAnimation="true" scrollX="true" wx:if="{{navigation}}">
-                <view class="view1">
+         <view class="flex-wrp" style="display:flex">
+           
+             <scroll-view style="flex:9" class="nnavbar fs-sm-13" scrollIntoView="{{toView}}" scrollLeft="{{scrollNavbarLeft}}" scrollWithAnimation="true" scrollX="true" wx:if="{{navigation}}">
+                <view class="view1" style="flex:8">
                     <view catchtap="onTapNavbar" class="navbar-item " hidden="{{!navigation}}" id="0">
                                <view class="navbar-item-wrap {{backgrop[0]}}">全部</view>
                      </view>
@@ -41,11 +43,16 @@
                 </view>
                 
             </scroll-view>
-              <view class="nnavbar-more" wx:if="{{navigation}}">
+             <view style="flex:1" class="nnavbar-more" wx:if="{{navigation}}">
                        <view catchtap="onTapNavBarMore" class="nnavbar-item" id="0">
-                         <view class="navbar-item-wrap {{backgrop[2]}}">　更多</view>
+                         <view class="navbar-item-wrap {{backgrop[2]}}">更多</view>
                       </view>
                 </view>
+           
+           
+         </view>
+            
+              
 
             <view  class="hideview" wx:if="{{navigation}}"></view>
             
@@ -90,12 +97,9 @@
          </view>
          
          <view class="info">
-           <view class="nnavbar-video" bindtap="more">
-             <view class="navbar-item">
-               <view  class="navbar-item-wrap">
-                 视频专区　　　　　　　　　　　　　　更多
-               </view>
-             </view>
+           <view class="nnavbar-video" bindtap="more" style="display:flex;">
+             <view style="flex:9;" class="navbar-item-wrap {{backgrop[2]}}">　视频专区</view>
+             <view style="flex:1;" class="navbar-item-wrap {{backgrop[2]}}">更多</view>
            </view>
             <view class="info-list">
                 <view class="info-content" wx:for="{{video_list}}" wx:key  wx:if="{{index<2}}">
