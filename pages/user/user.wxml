@@ -188,7 +188,7 @@
                             </navigator>
                         </view>
                     </view>
-                    <view class="flex-row">
+                    <view class="flex-row" style="width:50%;">
                         <view class="flex-grow-1">
                             <navigator class="nav-item" url="/pages/address/address">
                                 <view>
@@ -205,7 +205,7 @@
                                 <view>绑定手机号</view>
                             </navigator>
                         </view>
-                        <view class="flex-grow-1">
+                        <!-- <view class="flex-grow-1">
                             <navigator class="nav-item" url="/pages/book/order/order">
                                 <view>
                                     <image src="/images/icon-user-card.png"></image>
@@ -220,10 +220,10 @@
                                 </view>
                                 <view>我的卡券</view>
                             </navigator>
-                        </view>
+                        </view> -->
                     </view>
                 </view>
-                <view  style="text-align:center;font-size:0;" wx:if="{{show_customer_service==0}}">
+                <view hidden="ture" style="text-align:center;font-size:0;" wx:if="{{show_customer_service==0}}">
                   <navigator style="color: rgba(0,0,0,.3);font-size:9pt;display:inline-block;text-align:center;">
                     <text>哇咔科技提供技术支持</text>
                   </navigator>

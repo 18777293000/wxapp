@@ -76,6 +76,17 @@
     
     z-index: 4;
     height: 90rpx;
+    width: 80%;
+    white-space: nowrap;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e2e2;
+    color: #353535;
+    border-top: 1px solid #e2e2e2;
+}
+.nnavbar-video {
+    
+    z-index: 4;
+    height: 90rpx;
     width: 100%;
     white-space: nowrap;
     background-color: #ffffff;
@@ -89,12 +100,19 @@
     margin: auto 32rpx;
     height: 86rpx;
 }
-.navbar-item-more {
-    position: relative;
-    left: 40px;
-    display: inline-block;
-    margin: auto 32rpx;
-    height: 86rpx;
+.nnavbar-more {
+    position:absolute;
+    top:226px;
+    z-index: 4;
+    height: 90rpx;
+    width: 64px;
+    padding-left:10px;
+    margin-left:80%;
+    white-space: nowrap;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e2e2;
+    color: #353535;
+    border-top: 1px solid #e2e2e2;
 }
 
 .navbar-item-active {
@@ -851,6 +869,9 @@
     margin-top: -50rpx;
     margin-left: -50rpx;
     z-index: 99;
+}
+.info-list {
+    margin-top:12rpx;
 }
 
 .purchase1 {
