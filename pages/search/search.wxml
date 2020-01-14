@@ -8,7 +8,7 @@
                     <form>
                         <view class="search-box">
                             <view class="input-box">
-                                <view bindtap="pullDown" class="flex-row pull-down">
+                                <view hidden="true" bindtap="pullDown" class="flex-row pull-down">
                                     <view class="cat">{{default_cat.name}}</view>
                                     <view style="font-size: 0">
                                         <image class="search-icon" src="{{__wxapp_img.search.s_up.url}}"></image>

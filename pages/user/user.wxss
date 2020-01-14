@@ -243,7 +243,7 @@ button::after {
 
 .wallet-3 {
     background-color: #fff;
-    width: 300rpx;
+    width: 600rpx;
     height: 100%;
 }
 

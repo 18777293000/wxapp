@@ -228,8 +228,8 @@
                     <text>哇咔科技提供技术支持</text>
                   </navigator>
                 </view>
-                
                 <!-- 无用户信息时的option-list -->
+
                 <view class="wallet flex-row"wx:if="{{wallet&&wallet.is_wallet==1}}">
                     <view class="flex-grow-0 wallet-1 flex-x-center flex-y-center" style="{{wallet.re==1?'width:150rpx;':''}}">
                         <view>
@@ -239,7 +239,7 @@
                             <view class="fs-sm">{{wallets.status_2.text}}</view>
                         </view>
                     </view>
-                    <view bindtap="integral_mall" class="flex-grow-0 {{wallet.re==1?'wallet-3':'wallet-2'}} flex-x-center flex-y-center" data-integral="{{user_info.integral}}">
+                    <view hidden="true" bindtap="integral_mall" class="flex-grow-0 {{wallet.re==1?'wallet-3':'wallet-2'}} flex-x-center flex-y-center" data-integral="{{user_info.integral}}">
                         <view class="flex-grow-1 flex-y-center flex-col">
                             <view class="num-1 flex-x-center">{{user_info.integral}}</view>
                             <view class="flex-row num-2 flex-x-center">

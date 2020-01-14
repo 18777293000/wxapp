@@ -19,6 +19,11 @@ Page({
     },
     onLoad: function(t) {
         getApp().page.onLoad(this, t), this.cats();
+        this.loadTopicList({
+            page: 1,
+            reload: !0
+        });
+        console.log(1,this);
     },
     onReady: function(t) {
         getApp().page.onReady(this);
@@ -28,6 +33,9 @@ Page({
         this.setData({
             history_list: this.getHistoryList(!0)
         });
+        
+            console.log(1,this);
+        
     },
     onReachBottom: function(t) {
         getApp().page.onReachBottom(this);
@@ -114,22 +122,46 @@ Page({
         var t = {};
         a.data.cat_id && (t.cat_id = a.data.cat_id, a.setActiveCat(t.cat_id)), a.data.keyword && (t.keyword = a.data.keyword), 
         t.defaultCat = JSON.stringify(a.data.default_cat), a.showLoadingBar(), a.is_loading = !0, 
-        getApp().request({
-            url: getApp().api.default.search,
-            data: t,
-            success: function(t) {
-                0 == t.code && (a.setData({
-                    goods_list: t.data.list
-                }), 0 == t.data.list.length ? a.setData({
-                    is_search: !1
-                }) : a.setData({
-                    is_search: !0
-                })), t.code;
-            },
-            complete: function() {
-                a.hideLoadingBar(), a.is_loading = !1;
-            }
-        });
+        console.log(2,t);
+        //for(var i =0;i<a.data.goods_list.length;i++){
+           // if(t.keyword == a.data.goods_list[i].name){
+                getApp().request({
+                    url: getApp().api.default.search,
+                    data: t,
+                    success: function(t) {
+                        0 == t.code && (a.setData({
+                            goods_list: t.data.list
+                        }), 0 == t.data.list.length ? a.setData({
+                            is_search: !1
+                        }) : a.setData({
+                            is_search: !0
+                        })), t.code;
+                    },
+                    complete: function() {
+                        a.hideLoadingBar(), a.is_loading = !1;
+                    }
+                });
+           // }
+            // else if(t.keyword == a.data.list[i].title){
+            //     getApp().request({
+            //         url: getApp().api.default.topic_list,
+            //         data: t,
+            //         success: function(t) {
+            //             0 == t.code && (a.setData({
+            //                 goods_list: t.data.list
+            //             }), 0 == t.data.list.length ? a.setData({
+            //                 is_search: !1
+            //             }) : a.setData({
+            //                 is_search: !0
+            //             })), t.code;
+            //         },
+            //         complete: function() {
+            //             a.hideLoadingBar(), a.is_loading = !1;
+            //         }
+            //     });
+            // }
+        //}
+        console.log(3,this);
     },
     getHistoryList: function(t) {
         t = t || !1;
@@ -206,5 +238,53 @@ Page({
         this.setData({
             history_list: null
         }), getApp().core.removeStorageSync(getApp().const.SEARCH_HISTORY_LIST);
-    }
+    },
+    loadTopicList: function(i) {
+        var r = this;
+        console.log(r);
+        r.data.is_loading || i.loadmore && !r.data.is_more || (r.setData({
+            is_loading: !0
+        }), getApp().request({
+            url: getApp().api.default.topic_type,
+            success: function(a) {
+                 console.log(a);
+                0 == a.code && r.setData({
+                    navbarArray: a.data.list,
+                    navbarShowIndexArray: Array.from(Array(a.data.list.length).keys()),
+                    navigation: "" != a.data.list
+                }), getApp().request({
+                    url: getApp().api.default.topic_list,
+                    data: {
+                        page: i.page
+                    },
+                    success: function(a) {
+                      console.log(a);
+                        if (0 == a.code) if (void 0 !== r.data.typeid) {
+                            for (var t = 0, e = 0; e < r.data.navbarArray.length && (t += 66, r.data.navbarArray[e].id != r.data.typeid); e++) ;
+                            r.setData({
+                                scrollNavbarLeft: t
+                            }), r.switchChannel(parseInt(r.data.typeid)), r.sortTopic({
+                                page: 1,
+                                type: r.data.typeid,
+                                reload: !0
+                            });
+                        } else i.reload && r.setData({
+                            list: a.data.list,
+                            page: i.page,
+                            is_more: 0 < a.data.list.length
+                        }), i.loadmore && r.setData({
+                            list: r.data.list.concat(a.data.list),
+                            page: i.page,
+                            is_more: 0 < a.data.list.length
+                        });
+                    },
+                    complete: function() {
+                        r.setData({
+                            is_loading: !1
+                        });
+                    }
+                });
+            }
+        }));
+    },
 });

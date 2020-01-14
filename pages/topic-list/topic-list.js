@@ -36,7 +36,6 @@ Page({
             var hour = dateTime.getHours();
             var minute = dateTime.getMinutes();
             var timeSpanStr = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
-            console.log(1,timeSpanStr);
             this.setData({
                 timeString: timeSpanStr
                 })
@@ -111,6 +110,7 @@ Page({
         this.switchChannel(parseInt(a)), this.sortTopic({
             page: this.data.page + 1,
             type: parseInt(a),
+            
             loadmore: !0
         });
     },
