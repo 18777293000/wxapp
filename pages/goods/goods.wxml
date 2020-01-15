@@ -243,7 +243,7 @@
                         </view>
                     </view>
                     <view class="flex-grow-1 flex-row" wx:if="{{goods.is_negotiable}}">
-                        <view class="flex-grow-1 flex-y-center flex-x-center add-cart" style="background:#118eea" wx:if="{{store.good_negotiable.contact==1}}">
+                        <view hidden="ture" class="flex-grow-1 flex-y-center flex-x-center add-cart" style="background:#118eea" wx:if="{{store.good_negotiable.contact==1}}">
                             <block wx:if="{{__platform=='wx'}}">
                                 <view bindtap="kfMessage" class="flex-x-center flex-y-center _negotiable" wx:if="{{!store.show_customer_service}}">客服</view>
                                 <button class="flex-x-center flex-y-center _negotiable" openType="contact" sessionFrom="{{__user_info.nickname}}|" wx:else>客服</button>
