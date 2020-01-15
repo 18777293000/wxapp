@@ -154,7 +154,7 @@
                 <!-- 无用户信息时的wallet -->
                 <!-- 无用户信息时的option-list -->
                 <view class="order-block" wx:if="{{show_customer_service==0}}">
-                    <view class="flex-row">
+                    <view class="flex-row" style="width:100%;">
                         <view class="flex-grow-1">
                             <navigator class="nav-item" url="/pages/favorite/favorite">
                                 <view>
@@ -163,20 +163,28 @@
                                 <view>我的收藏</view>
                             </navigator>
                         </view>
-                        <view class="flex-grow-1">
+                        <!-- <view class="flex-grow-1">
                             <navigator class="nav-item" url="javascript">
                                 <view>
                                     <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-user-kf.png"></image>
                                 </view>
                                 <view>在线客服</view>
                             </navigator>
-                        </view>
+                        </view> -->
                         <view class="flex-grow-1">
                             <navigator class="nav-item" url="javascript">
                                 <view>
                                     <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-user-lx.png"></image>
                                 </view>
                                 <view>联系我们</view>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1">
+                            <navigator class="nav-item" url="/pages/address/address">
+                                <view>
+                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-user-dz.png"></image>
+                                </view>
+                                <view>收货地址</view>
                             </navigator>
                         </view>
                         <view class="flex-grow-1">
@@ -188,15 +196,8 @@
                             </navigator>
                         </view>
                     </view>
-                    <view class="flex-row" style="width:50%;">
-                        <view class="flex-grow-1">
-                            <navigator class="nav-item" url="/pages/address/address">
-                                <view>
-                                    <image src="https://wakakago.510show.com/addons/zjhj_mall/core/web/statics/images/user-center/icon-user-dz.png"></image>
-                                </view>
-                                <view>收货地址</view>
-                            </navigator>
-                        </view>
+                    <view class="flex-row" style="width:25%;">
+                        
                         <view class="flex-grow-1">
                             <navigator class="nav-item" url="/pages/bangding/bangding">
                                 <view>
