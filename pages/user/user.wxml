@@ -32,7 +32,7 @@
                         </view> -->
                     </view>
                    <!-- 无用户信息的面板 -->
-                    <view class="user-info flex-row flex-y-center" wx:if="{{style.top==0}}">
+                    <view class="user-info flex-row flex-y-center" wx:if="{{style.top==1}}">
                         <image class="user-info-bg" mode="aspectFill" src="{{user_center_bg}}"></image>
                         <view class="flex-grow-1 flex-y-center flex-row userinfo-name">
                             <view class="flex-grow-0">
@@ -55,7 +55,7 @@
                             </navigator>
                         </view>
                     </view>
-                    <view class="user-info flex-row flex-x-center flex-y-center" wx:if="{{style.top==1}}">
+                    <view class="user-info flex-row flex-x-center flex-y-center" wx:if="{{style.top==0}}">
                         <image class="user-info-bg" mode="aspectFill" src="{{user_center_bg}}"></image>
                         <view>
                             <view class="flex-x-center">
@@ -70,6 +70,12 @@
                             <view class="flex-x-center" style="margin-top: 10rpx;">
                                 <text class="user-name">{{user_info.nickname}}</text>
                             </view>
+                        </view>
+                        <view class="flex-grow-0 flex-y-center userinfo-addr">
+                            <navigator class="my-address flex-y-center" url="/pages/address/address">
+                                <image src="{{__wxapp_img.store.address.url}}"></image>
+                                <text>收货地址</text>
+                            </navigator>
                         </view>
                     </view>
                     <view class="user-info flex-row flex-y-center flex-x-center" wx:if="{{style.top==2}}">
@@ -235,28 +241,27 @@
                     <view class="flex-grow-0 wallet-1 flex-x-center flex-y-center" style="{{wallet.re==1?'width:150rpx;':''}}">
                         <view>
                             <view class="flex-x-center">
-                                <image src="{{wallets.status_2.icon}}" style="width:48rpx;height:48rpx;margin-bottom:20rpx;"></image>
+                                <image src="{{__wxapp_img.user.wallet.url}}" style="width:48rpx;height:48rpx;margin-bottom:20rpx;"></image>
                             </view>
-                            <view class="fs-sm">{{wallets.status_2.text}}</view>
+                            <view class="fs-sm">{{"钱包"}}</view>
                         </view>
                     </view>
-                    <view hidden="true" bindtap="integral_mall" class="flex-grow-0 {{wallet.re==1?'wallet-3':'wallet-2'}} flex-x-center flex-y-center" data-integral="{{user_info.integral}}">
+                    <view  bindtap="integral_mall" class="flex-grow-0 {{wallet.re==1?'wallet-3':'wallet-2'}} flex-x-center flex-y-center" data-integral="{{user_info.integral}}">
                         <view class="flex-grow-1 flex-y-center flex-col">
                             <view class="num-1 flex-x-center">{{user_info.integral}}</view>
                             <view class="flex-row num-2 flex-x-center">
-                                <image class="flex-grow-0" src="{{wallets.status_0.icon}}" style="width:26rpx;height:26rpx;margin-right:10rpx;"></image>
-                                <view class="flex-grow-0">{{wallets.status_0.text}}</view>
+                                <image class="flex-grow-0" src="{{__wxapp_img.user.integral.url}}" style="width:26rpx;height:26rpx;margin-right:10rpx;"></image>
+                                <view class="flex-grow-0">{{"积分"}}</view>
                             </view>
                         </view>
                     </view>
-                    <view class="flex-grow-0 {{wallet.re==1?'wallet-3':'wallet-2'}}  flex-x-center flex-y-center" wx:if="{{wallet.re==1}}">
-                    <!--  -->
+                    <view class="flex-grow-0 {{wallet.re==1?'wallet-3':'wallet-2'}}  flex-x-center flex-y-center" wx:if="{{wallet.is_wallet==1}}">
                         <view class="flex-grow-1 flex-y-center flex-col">
                             <navigator hoverClass="none" url="/pages/balance/balance">
                                 <view class="num-1 flex-x-center">{{user_info.money}}</view>
                                 <view class="flex-row num-2 flex-x-center">
-                                    <image class="flex-grow-0" src="{{wallets.status_1.icon}}" style="width:26rpx;height:26rpx;margin-right:10rpx;"></image>
-                                    <view class="flex-grow-0">{{wallets.status_1.text}}</view>
+                                    <image class="flex-grow-0" src="{{__wxapp_img.user.balance.url}}" style="width:26rpx;height:26rpx;margin-right:10rpx;"></image>
+                                    <view class="flex-grow-0">{{"余额"}}</view>
                                 </view>
                             </navigator>
                         </view>
